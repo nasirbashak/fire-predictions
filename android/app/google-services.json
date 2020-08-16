@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "955860891014",
+    "firebase_url": "https://fire-prediction-afe88.firebaseio.com",
+    "project_id": "fire-prediction-afe88",
+    "storage_bucket": "fire-prediction-afe88.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955860891014:android:073f8af130f748dfede807",
+        "android_client_info": {
+          "package_name": "com.nasirbashak007.fireprediction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955860891014-e5dceq31mgb5i2nmaqfvbpq92c6n17ij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHGJor1IJViXyP3IPR4PIIY4NKg6wyWJw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955860891014-e5dceq31mgb5i2nmaqfvbpq92c6n17ij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
