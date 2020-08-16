@@ -1,5 +1,9 @@
 import 'package:fireprediction/Wrapper.dart';
+import 'package:fireprediction/screens/firedetails/fire_input_details.dart';
+import 'package:fireprediction/screens/view/view_report.dart';
 import 'package:flutter/material.dart';
+
+import 'screens/home/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,7 +38,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Wrapper(),
+      home: FireInputDetails(), //Wrapper()
     );
   }
 
