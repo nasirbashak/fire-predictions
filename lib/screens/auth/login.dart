@@ -213,7 +213,7 @@ class _LoginState extends State<Login> {
                                 _authService.signInwithEmailandPassword("nasir@gmail.com", "12345678");
                               },
                               child: Center(
-                                child: Text("SIGNIN",
+                                child: Text("SIGNINN(change this test)",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: "Poppins-Bold",
