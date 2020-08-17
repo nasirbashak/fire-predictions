@@ -62,6 +62,9 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
+
+    String errorMessage = "";
+
     return Stack(
       fit: StackFit.expand,
       children: <Widget>[
@@ -129,6 +132,7 @@ class _RegisterState extends State<Register> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
+
                           Text("Register",
                               style: TextStyle(
                                   fontSize: ScreenUtil.getInstance().setSp(45),
@@ -235,9 +239,56 @@ class _RegisterState extends State<Register> {
                                     print("inside register email and pass Result.uid = " + result.uid);
                                   }else if(result is String){
                                     print("inside register email and pass Result.uid != "+ result.split(",")[1]);
+                                    setState(() {
+                                      errorMessage = result.split(",")[1];
+                                      print(errorMessage);
+
+                                    });
+
+                                    final snackBar = SnackBar(
+                                      content: Text("$errorMessage",
+                                        style: TextStyle(
+                                            color: Colors.red
+                                        ),),
+                                      action: SnackBarAction(
+                                        label: '',
+                                        onPressed: () {
+                                          // Some code to undo the change.
+                                        },
+                                      ),
+                                    );
+
+                                    // Find the Scaffold in the widget tree and use
+                                    // it to show a SnackBar.
+                                    Scaffold.of(context).showSnackBar(snackBar);
+
+
                                   }
                                 } catch (e) {
                                   print("inside register email and pass Exception"+e.toString());
+                                  setState(() {
+                                    errorMessage = e.toString();
+                                  });
+
+                                  errorMessage = e.toString();
+
+                                  final snackBar = SnackBar(
+                                    content: Text("$errorMessage",
+                                      style: TextStyle(
+                                          color: Colors.red
+                                      ),),
+                                    action: SnackBarAction(
+                                      label: '',
+                                      onPressed: () {
+                                        // Some code to undo the change.
+                                      },
+                                    ),
+                                  );
+
+                                  // Find the Scaffold in the widget tree and use
+                                  // it to show a SnackBar.
+                                  Scaffold.of(context).showSnackBar(snackBar);
+
 
                                 }
 

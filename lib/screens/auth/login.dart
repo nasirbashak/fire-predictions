@@ -61,6 +61,8 @@ class _LoginState extends State<Login> {
     String userName = "";
     String password = "";
 
+    String errorMessage = '';
+
     return Stack(
       fit: StackFit.expand,
       children: <Widget>[
@@ -226,9 +228,51 @@ class _LoginState extends State<Login> {
                                     print("inside login email and pass Result.uid = " + result.uid);
                                   }else if(result is String){
                                     print("inside login email and pass Result.uid != "+ result.split(",")[1]);
+
+                                    errorMessage = result.split(",")[1];
+
+                                    final snackBar = SnackBar(
+                                      content: Text("$errorMessage",
+                                        style: TextStyle(
+                                            color: Colors.red
+                                        ),),
+                                      action: SnackBarAction(
+                                        label: '',
+                                        onPressed: () {
+                                          // Some code to undo the change.
+                                        },
+                                      ),
+                                    );
+
+                                    // Find the Scaffold in the widget tree and use
+                                    // it to show a SnackBar.
+                                    Scaffold.of(context).showSnackBar(snackBar);
+
+
+
                                   }
                                 } catch (e) {
                                   print("inside login email and pass Exception"+e.toString());
+
+                                  errorMessage = e.toString();
+
+                                  final snackBar = SnackBar(
+                                    content: Text("$errorMessage",
+                                      style: TextStyle(
+                                          color: Colors.red
+                                      ),),
+                                    action: SnackBarAction(
+                                      label: '',
+                                      onPressed: () {
+                                        // Some code to undo the change.
+                                      },
+                                    ),
+                                  );
+
+                                  // Find the Scaffold in the widget tree and use
+                                  // it to show a SnackBar.
+                                  Scaffold.of(context).showSnackBar(snackBar);
+
 
                                 }
 
