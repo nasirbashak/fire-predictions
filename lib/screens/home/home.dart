@@ -1,11 +1,25 @@
+import 'package:fireprediction/models/user.dart';
 import 'package:flutter/material.dart';
 
+import '../../services/authservice.dart';
+import '../firedetails/fire_input_details.dart';
+import '../firedetails/fire_input_details.dart';
+import '../view/view_report.dart';
+
 class Home extends StatefulWidget {
+  final user;
+  Home({this.user});
+
   @override
-  _HomeState createState() => _HomeState();
+  _HomeState createState() => _HomeState(user:user);
 }
 
 class _HomeState extends State<Home> {
+
+  AuthService _authService = AuthService();
+  final user;
+  _HomeState({this.user});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +31,10 @@ class _HomeState extends State<Home> {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.more_horiz),
+            onPressed: () {
+              _authService.signout();
+            },
+            icon: Icon(Icons.exit_to_app),
           )
         ],
       ),
@@ -45,7 +61,8 @@ class _HomeState extends State<Home> {
                 ),
                 FlatButton(
                   onPressed: () {
-                    
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => FireInputDetails(user: user)));
+
                   },
                   child: Text("Yes"),
                   color: Colors.blue,
@@ -67,6 +84,7 @@ class _HomeState extends State<Home> {
                 ),
                 FlatButton(
                   onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewReport()));
 
                   },
                   child: Text("View Report"),

@@ -18,6 +18,10 @@ class _RegisterState extends State<Register> {
 
   final AuthService _authService = AuthService();
 
+  String username;
+  String pass1;
+  String pass2;
+
   bool _isSelected = false;
 
   void _radio() {
@@ -138,6 +142,9 @@ class _RegisterState extends State<Register> {
                                   fontFamily: "Poppins-Medium",
                                   fontSize: ScreenUtil.getInstance().setSp(26))),
                           TextField(
+                            onChanged: (data){
+                              username = data;
+                            },
                             decoration: InputDecoration(
                                 hintText: "username",
                                 hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
@@ -150,6 +157,9 @@ class _RegisterState extends State<Register> {
                                   fontFamily: "Poppins-Medium",
                                   fontSize: ScreenUtil.getInstance().setSp(26))),
                           TextField(
+                            onChanged: (data){
+                              pass1 = data;
+                            },
                             obscureText: true,
                             decoration: InputDecoration(
                                 hintText: "Password",
@@ -163,6 +173,9 @@ class _RegisterState extends State<Register> {
                                   fontFamily: "Poppins-Medium",
                                   fontSize: ScreenUtil.getInstance().setSp(26))),
                           TextField(
+                            onChanged: (data){
+                              pass2 = data;
+                            },
                             obscureText: true,
                             decoration: InputDecoration(
                                 hintText: "Password",
@@ -214,7 +227,21 @@ class _RegisterState extends State<Register> {
                           child: Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () async {
+
+                                try {
+                                  dynamic result  = await _authService.registerWithEmaillAndPassword(username, pass1);
+                                  if(result is User) {
+                                    print("inside register email and pass Result.uid = " + result.uid);
+                                  }else if(result is String){
+                                    print("inside register email and pass Result.uid != "+ result.split(",")[1]);
+                                  }
+                                } catch (e) {
+                                  print("inside register email and pass Exception"+e.toString());
+
+                                }
+
+                              },
                               child: Center(
                                 child: Text("Register",
                                     style: TextStyle(

@@ -10,8 +10,14 @@ class AuthService{
     _auth =  FirebaseAuth.instance;
   }
 
-  User _createUserFromFB(FirebaseUser user){
+  Stream<User> get user{
+    return _auth.onAuthStateChanged.map(_createUserFromFB);
+  }
 
+  User _createUserFromFB(FirebaseUser user){
+    if(user == null){
+      return null;
+    }
     return User(name : user.displayName, uid:user.uid) ;
   }
 

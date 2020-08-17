@@ -58,6 +58,9 @@ class _LoginState extends State<Login> {
     ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: true);
 
+    String userName = "";
+    String password = "";
+
     return Stack(
       fit: StackFit.expand,
       children: <Widget>[
@@ -132,6 +135,9 @@ class _LoginState extends State<Login> {
                                   fontFamily: "Poppins-Medium",
                                   fontSize: ScreenUtil.getInstance().setSp(26))),
                           TextField(
+                            onChanged: (data){
+                              userName = data;
+                            },
                             decoration: InputDecoration(
                                 hintText: "username",
                                 hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
@@ -144,6 +150,9 @@ class _LoginState extends State<Login> {
                                   fontFamily: "Poppins-Medium",
                                   fontSize: ScreenUtil.getInstance().setSp(26))),
                           TextField(
+                            onChanged: (data){
+                              password = data;
+                            },
                             obscureText: true,
                             decoration: InputDecoration(
                                 hintText: "Password",
@@ -209,11 +218,26 @@ class _LoginState extends State<Login> {
                           child: Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              onTap: () {
-                                _authService.signInwithEmailandPassword("nasir@gmail.com", "12345678");
+                              onTap: () async {
+
+                                try {
+                                  dynamic result  = await _authService.signInwithEmailandPassword(userName, password);
+                                  if(result is User) {
+                                    print("inside login email and pass Result.uid = " + result.uid);
+                                  }else if(result is String){
+                                    print("inside login email and pass Result.uid != "+ result.split(",")[1]);
+                                  }
+                                } catch (e) {
+                                  print("inside login email and pass Exception"+e.toString());
+
+                                }
+
+
+
+
                               },
                               child: Center(
-                                child: Text("SIGNINN(change this test)",
+                                child: Text("SIGNIN",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: "Poppins-Bold",
